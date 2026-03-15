@@ -2,7 +2,7 @@ require("dotenv").config();
 const express  = require("express");
 const cors     = require("cors");
 const connectDB = require("./db");
-
+const taskRoutes = require("./routes/tasks");
 const app  = express();
 const PORT = process.env.PORT || 3001;
 
@@ -16,6 +16,8 @@ app.use(express.json());
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "Backend + MongoDB running 🚀" });
 });
+
+app.use("/api/tasks", taskRoutes);
 
 // 👇 Add your routes here
 
